@@ -129,6 +129,16 @@
   .reveal{opacity:0;transform:translateY(18px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards}
   @keyframes rise{to{opacity:1;transform:none}}
   .d1{animation-delay:.05s}.d2{animation-delay:.13s}.d3{animation-delay:.21s}
+  @media(max-width:600px){
+    .logo-txt span{display:none}
+    .logo-txt{font-size:17px}
+    .nav-right{gap:8px}
+    .toggles{gap:6px}
+    .nav-cta{padding:9px 12px;font-size:13px}
+    .nav-cta svg{display:none}
+    .hero-visual{position:static;height:auto;display:flex;flex-direction:column;gap:14px;max-width:100%;margin-top:10px}
+    .deal-card{position:static!important;width:100%;transform:none!important;top:auto;left:auto;right:auto;bottom:auto}
+  }
 </style>
 </head>
 <body>
