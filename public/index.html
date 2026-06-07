@@ -37,7 +37,9 @@
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
   .logo{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink)}
   .logo-mark{width:42px;height:42px;border-radius:11px;background:var(--sand-deep);display:grid;place-items:center;border:1.5px solid var(--ink);color:var(--ink)}
-  .logo-mark svg{width:24px;height:24px}
+  .logo-mark{background:transparent;border:none;width:46px;height:46px}
+  .logo-img{width:46px;height:46px;object-fit:contain}
+  [data-theme="dark"] .logo-img{filter:brightness(0) invert(1)}
   .logo-txt{font-family:'Fraunces',serif;font-weight:900;font-size:19px;line-height:1;letter-spacing:-.01em}
   .logo-txt span{display:block;font-family:'Archivo';font-weight:600;font-size:10px;letter-spacing:.18em;color:var(--ink-soft);margin-top:3px}
   .nav-links{display:flex;gap:30px;list-style:none}
@@ -49,8 +51,11 @@
   .theme-switch::before{content:"\263E";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--paper);display:flex;align-items:center;justify-content:center;font-size:12px;transition:transform .3s;box-shadow:0 1px 4px rgba(0,0,0,.25)}
   [data-theme="dark"] .theme-switch{background:var(--accent)}
   [data-theme="dark"] .theme-switch::before{transform:translateX(24px);content:"\2600"}
-  .lang-pill{background:none;border:1.5px solid var(--line);color:var(--ink-soft);height:30px;padding:0 13px;border-radius:30px;cursor:pointer;font-family:inherit;font-weight:700;font-size:13px;transition:all .2s}
-  .lang-pill:hover{border-color:var(--accent);color:var(--accent)}
+  .lang-switch{position:relative;width:62px;height:28px;border-radius:30px;border:none;background:var(--sand-deep);cursor:pointer;padding:0;flex-shrink:0;font-family:inherit}
+  .lang-switch::after{content:"IT";position:absolute;top:0;left:0;width:31px;height:28px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--ink-soft);z-index:2}
+  .lang-switch::before{content:"";position:absolute;top:3px;left:3px;width:28px;height:22px;border-radius:30px;background:var(--paper);box-shadow:0 1px 4px rgba(0,0,0,.25);transition:transform .3s;z-index:1}
+  .lang-switch[data-lang="en"]::before{transform:translateX(28px)}
+  .lang-switch[data-lang="en"]::after{content:"EN";left:auto;right:0}
   .nav-cta{background:var(--ink);color:var(--paper);text-decoration:none;padding:11px 20px;border-radius:9px;font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:8px;transition:transform .15s,background .2s}
   .nav-cta:hover{background:var(--accent);transform:translateY(-1px)}
   @media(max-width:880px){.nav-links{display:none}}
@@ -134,9 +139,7 @@
 <nav>
   <div class="wrap nav-inner">
     <a href="#" class="logo">
-      <span class="logo-mark">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
-      </span>
+      <span class="logo-mark"><img src="/logo_nav.png" alt="NomadCrazyDeals" class="logo-img"></span>
       <span class="logo-txt">NomadCrazyDeals<span>OFFERTE AMAZON · ITALIA</span></span>
     </a>
     <ul class="nav-links">
@@ -146,7 +149,7 @@
     <div class="nav-right">
       <div class="toggles">
         <button class="theme-switch" onclick="toggleTheme()" aria-label="Cambia tema"></button>
-        <button id="langToggle" class="lang-pill" onclick="toggleLang()" aria-label="Cambia lingua">IT</button>
+        <button id="langToggle" class="lang-switch" onclick="toggleLang()" aria-label="Cambia lingua" data-lang="it"></button>
       </div>
       <a href="https://t.me/NomadCrazyDeals" target="_blank" rel="noopener" class="nav-cta">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3l-3.3 15.6c-.2 1.1-.9 1.4-1.9.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.5l-4.9-1.5c-1.1-.3-1.1-1 .2-1.5l19.2-7.4c.9-.3 1.7.2 1.4 1.7z"/></svg>
@@ -287,13 +290,13 @@ var I18N={en:{
 var IT_CACHE={};
 function toggleLang(){
   var btn=document.getElementById('langToggle');
-  var to=btn.textContent.trim()==='IT'?'en':'it';
+  var to=btn.getAttribute('data-lang')==='it'?'en':'it';
   document.querySelectorAll('[data-i18n]').forEach(function(el){
     var k=el.getAttribute('data-i18n');
     if(to==='en'){if(!(k in IT_CACHE))IT_CACHE[k]=el.innerHTML;if(I18N.en[k]!==undefined)el.innerHTML=I18N.en[k];}
     else{if(k in IT_CACHE)el.innerHTML=IT_CACHE[k];}
   });
-  btn.textContent=to==='en'?'EN':'IT';
+  btn.setAttribute('data-lang',to);
   document.documentElement.lang=to;
 }
 </script>
