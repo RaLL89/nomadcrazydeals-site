@@ -21,6 +21,19 @@
     --line:#ddd2c0;
     --shadow:rgba(40,30,15,.10);
   }
+  [data-theme="dark"]{
+    --sand:#2a2620;
+    --sand-deep:#221e19;
+    --ink:#f4ece0;
+    --ink-soft:#b8b0a4;
+    --paper:#16140f;
+    --accent:#e8643a;
+    --accent-deep:#d8542a;
+    --tg:#3ab3e8;
+    --green:#5a9d6e;
+    --line:#3a352c;
+    --shadow:rgba(0,0,0,.35);
+  }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
@@ -252,6 +265,12 @@
   .reveal{opacity:0;transform:translateY(18px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards}
   @keyframes rise{to{opacity:1;transform:none}}
   .d1{animation-delay:.05s}.d2{animation-delay:.13s}.d3{animation-delay:.21s}.d4{animation-delay:.29s}
+  .top-toggle{background:none;border:1.5px solid var(--line);color:var(--ink-soft);
+    width:40px;height:40px;border-radius:10px;cursor:pointer;font-family:inherit;
+    font-weight:700;font-size:14px;transition:all .2s;display:inline-flex;
+    align-items:center;justify-content:center;margin-right:10px}
+  .top-toggle:hover{border-color:var(--accent);color:var(--accent)}
+  body{transition:background .3s,color .3s}
 </style>
 </head>
 <body>
@@ -267,10 +286,11 @@
       <span class="logo-txt">NomadCrazyDeals<span>OFFERTE AMAZON · ITALIA</span></span>
     </a>
     <ul class="nav-links">
-      <li><a href="#categorie">Categorie</a></li>
-      <li><a href="#come">Come funziona</a></li>
-      <li><a href="https://t.me/NomadCrazyDeals" target="_blank" rel="noopener">Offerte</a></li>
+      <li><a href="#come" data-i18n="nav-how">Come funziona</a></li>
+      <li><a href="https://t.me/NomadCrazyDeals" target="_blank" rel="noopener" data-i18n="nav-deals">Offerte</a></li>
     </ul>
+    <button id="langToggle" class="top-toggle" onclick="toggleLang()" aria-label="Lingua">IT</button>
+    <button id="themeToggle" class="top-toggle" onclick="toggleTheme()" aria-label="Tema">☾</button>
     <a href="https://t.me/NomadCrazyDeals" target="_blank" rel="noopener" class="nav-cta">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3l-3.3 15.6c-.2 1.1-.9 1.4-1.9.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.5l-4.9-1.5c-1.1-.3-1.1-1 .2-1.5l19.2-7.4c.9-.3 1.7.2 1.4 1.7z"/></svg>
       Unisciti al canale
@@ -282,8 +302,8 @@
   <div class="wrap hero-inner">
     <div class="hero-text reveal d1">
       <span class="badge"><span class="dot"></span> Selezione aggiornata ogni giorno</span>
-      <h1>Le offerte Amazon<br><em>vere</em>, ogni giorno.</h1>
-      <p class="hero-sub">Tech, casa, cucina, cura persona e profumi. Sconti che valgono davvero — controllati a mano, non scrapati a caso. Nessuno spam, nessun prezzo gonfiato.</p>
+      <h1 data-i18n="hero-title">Le offerte Amazon<br><em>vere</em>, ogni giorno.</h1>
+      <p class="hero-sub" data-i18n="hero-sub">Le migliori offerte Amazon, scovate e verificate ogni giorno. Sconti che valgono davvero — controllati a mano, mai prezzi gonfiati, mai spam.</p>
       <div class="hero-ctas">
         <a href="https://t.me/NomadCrazyDeals" target="_blank" rel="noopener" class="btn-primary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3l-3.3 15.6c-.2 1.1-.9 1.4-1.9.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.5l-4.9-1.5c-1.1-.3-1.1-1 .2-1.5l19.2-7.4c.9-.3 1.7.2 1.4 1.7z"/></svg>
@@ -323,45 +343,6 @@
 </header>
 
 <!-- CATEGORIES -->
-<section class="sec" id="categorie">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <h2>Sfoglia per categoria</h2>
-        <p>Quattro mondi, una sola regola: l'offerta deve valere davvero.</p>
-      </div>
-      <a href="https://t.me/NomadCrazyDeals" target="_blank" rel="noopener" class="sec-link">Tutte le offerte su Telegram →</a>
-    </div>
-    <div class="cat-grid">
-      <a href="https://t.me/NomadCrazyDeals" target="_blank" rel="noopener" class="cat cat-casa reveal d1">
-        <span class="ic">🏠</span>
-        <h3>Casa & Cucina</h3>
-        <span>Elettrodomestici, utensili, comfort</span>
-        <span class="arrow">→</span>
-      </a>
-      <a href="https://t.me/NomadCrazyDeals" target="_blank" rel="noopener" class="cat cat-cura reveal d2">
-        <span class="ic">🧴</span>
-        <h3>Cura persona & Profumi</h3>
-        <span>Beauty, igiene, fragranze</span>
-        <span class="arrow">→</span>
-      </a>
-      <a href="https://t.me/NomadCrazyDeals" target="_blank" rel="noopener" class="cat cat-tech reveal d3">
-        <span class="ic">⚡</span>
-        <h3>Tech</h3>
-        <span>Audio, smart home, accessori</span>
-        <span class="arrow">→</span>
-      </a>
-      <a href="https://t.me/NomadCrazyDeals" target="_blank" rel="noopener" class="cat cat-top reveal d4">
-        <span class="ic">🔥</span>
-        <span class="pill">IL NOSTRO MARCHIO</span>
-        <h3 style="margin-top:14px">Top Sconti &gt;50%</h3>
-        <span>Le bombe vere, verificate</span>
-        <span class="arrow" style="color:#f0b429;opacity:.7">→</span>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- DEALS section removed for launch: no fake products. Real deals live on Telegram. -->
 
 
@@ -370,7 +351,7 @@
   <div class="wrap tg-band">
     <div class="tg-inner">
       <div>
-        <h2>Il cuore di NomadCrazyDeals è su Telegram</h2>
+        <h2 data-i18n="tg-title">Il cuore di NomadCrazyDeals è su Telegram</h2>
         <p>Il sito è la vetrina. Le offerte vere arrivano in tempo reale sul canale — ogni giorno, appena le trovo. Niente notifiche inutili, solo deal che valgono.</p>
         <a href="https://t.me/NomadCrazyDeals" target="_blank" rel="noopener" class="tg-cta">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3l-3.3 15.6c-.2 1.1-.9 1.4-1.9.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.5l-4.9-1.5c-1.1-.3-1.1-1 .2-1.5l19.2-7.4c.9-.3 1.7.2 1.4 1.7z"/></svg>
@@ -388,7 +369,7 @@
 <!-- HOW IT WORKS -->
 <section class="sec" id="come">
   <div class="wrap">
-    <div class="sec-head"><div><h2>Come funziona</h2><p>Trasparenza totale. Ecco cosa faccio e cosa ottieni.</p></div></div>
+    <div class="sec-head"><div><h2 data-i18n="how-title">Come funziona</h2><p>Trasparenza totale. Ecco cosa faccio e cosa ottieni.</p></div></div>
     <div class="how">
       <div class="step reveal d1">
         <div class="num">1</div>
@@ -438,9 +419,49 @@
       <p>© 2026 NomadCrazyDeals</p>
       <p>Fatto a Roma 🇮🇹</p>
     </div>
-    <p class="disclosure">In qualità di Affiliato Amazon, ricevo un guadagno dagli acquisti idonei. I prezzi e la disponibilità sono accurati alla data/ora indicata e sono soggetti a modifiche. Qualsiasi prezzo riportato al momento dell'acquisto sul sito Amazon sarà quello applicato.</p>
+    <p class="disclosure">Questo sito raccoglie offerte e promozioni disponibili su Amazon e non rappresenta una testata giornalistica, essendo aggiornato senza periodicità regolare. In qualità di Affiliato Amazon, ricevo un guadagno dagli acquisti idonei. I prezzi e la disponibilità sono accurati alla data e ora indicate e sono soggetti a modifiche: il prezzo applicato sarà quello mostrato su Amazon al momento dell'acquisto. Ogni marchio citato è utilizzato a scopo puramente illustrativo e appartiene ai rispettivi proprietari.</p>
   </div>
 </footer>
 
+<script>
+function toggleTheme(){
+  var d=document.documentElement;
+  var cur=d.getAttribute('data-theme')==='dark'?'':'dark';
+  if(cur){d.setAttribute('data-theme','dark');}else{d.removeAttribute('data-theme');}
+  try{localStorage.setItem('ncd-theme',cur);}catch(e){}
+  document.getElementById('themeToggle').textContent=cur?'☀':'☾';
+}
+(function(){try{if(localStorage.getItem('ncd-theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');var t=document.getElementById('themeToggle');if(t)t.textContent='☀';}}catch(e){}})();
+
+var I18N={
+  en:{
+    'hero-title':'Real Amazon deals,<br><em>every day</em>.',
+    'hero-sub':'The best Amazon deals, hunted and verified every day. Discounts that are actually worth it — hand-checked, never inflated prices, never spam.',
+    'cta-tg':'Join the channel',
+    'cta-amz':'Amazon storefront →',
+    'trust1':'Hand-verified discounts','trust2':'Zero spam, only deals','trust3':'Updated every day',
+    'how-title':'How it works','how-sub':'Total transparency. Here is what I do and what you get.',
+    'how1-t':'I search and verify','how1-d':'Every day I scan Amazon Italy for real discounts. I check the "before" price is genuine, not faked.',
+    'how2-t':'I pick the best','how2-d':'I only post what I would buy myself. If it is not worth it, it does not pass.',
+    'how3-t':'You save','how3-d':'Get the deals on the channel or browse here. Buy on Amazon at the discounted price. Simple.',
+    'tg-title':'The heart of NomadCrazyDeals is on Telegram',
+    'tg-sub':'The site is the window. The real deals arrive in real time on the channel — every day, as soon as I find them. No useless notifications, only deals that matter.',
+    'nav-how':'How it works','nav-deals':'Deals'
+  }
+};
+var IT_CACHE={};
+function toggleLang(){
+  var btn=document.getElementById('langToggle');
+  var to=btn.textContent==='IT'?'en':'it';
+  var els=document.querySelectorAll('[data-i18n]');
+  els.forEach(function(el){
+    var k=el.getAttribute('data-i18n');
+    if(to==='en'){ if(!(k in IT_CACHE))IT_CACHE[k]=el.innerHTML; if(I18N.en[k]!==undefined)el.innerHTML=I18N.en[k]; }
+    else{ if(k in IT_CACHE)el.innerHTML=IT_CACHE[k]; }
+  });
+  btn.textContent=to==='en'?'EN':'IT';
+  document.documentElement.lang=to;
+}
+</script>
 </body>
 </html>
