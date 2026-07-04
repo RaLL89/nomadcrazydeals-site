@@ -1,3 +1,10 @@
 .DS_Store
 *.log
 public/*.bak_*
+.env
+.env.*
+*.key
+*.pem
+id_ed25519*
+*secret*
+node_modules/
