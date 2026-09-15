@@ -3,3 +3,21 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=31536000
+  Content-Security-Policy: frame-ancestors 'none'; base-uri 'self'; object-src 'none'; form-action 'self'
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'
+
+/*.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/favicon.ico
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/site.webmanifest
+  Cache-Control: public, max-age=86400
+
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex

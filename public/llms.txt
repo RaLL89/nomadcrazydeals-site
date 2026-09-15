@@ -1,0 +1,11 @@
+# NomadCrazyDeals
+
+> Canale Telegram italiano di offerte Amazon.it. Prezzo attuale e prezzo di riferimento letti dall'API ufficiale di Amazon; sconto calcolato sul prezzo di riferimento indicato da Amazon; offerte ricontrollate ogni 2 ore e segnate «Offerta terminata» quando non più valide; stesso prodotto non ripubblicato entro 30 giorni. Link affiliati (Programma Affiliazione Amazon EU): il prezzo per l'utente non cambia. Prezzi e disponibilità possono cambiare in qualsiasi momento.
+
+## Pagine
+- [Home](https://nomadcrazydeals.com/): presentazione e 3 offerte in evidenza aggiornate una volta al giorno
+- [Come funziona](https://nomadcrazydeals.com/come-funziona/): prezzi, filtri, offerte terminate, FAQ
+- [Note legali e link affiliati](https://nomadcrazydeals.com/note-legali/)
+
+## Canale
+- [Telegram @NomadCrazyDeals](https://t.me/NomadCrazyDeals)

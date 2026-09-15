@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nomadcrazydeals.com/sitemap.xml
