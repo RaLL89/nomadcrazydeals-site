@@ -28,7 +28,7 @@
 <script>(function(){var d=document.documentElement,t=null;try{t=localStorage.getItem('ncd-theme')}catch(e){}if(t==='dark'||(t!=='light'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)){d.setAttribute('data-theme','dark')}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,900&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,900&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://nomadcrazydeals.com/#organization","name":"NomadCrazyDeals","alternateName":"Nomad Crazy Deals","url":"https://nomadcrazydeals.com/","logo":{"@type":"ImageObject","@id":"https://nomadcrazydeals.com/#logo","url":"https://nomadcrazydeals.com/icon-512.png","contentUrl":"https://nomadcrazydeals.com/icon-512.png","width":512,"height":512,"caption":"NomadCrazyDeals"},"image":{"@id":"https://nomadcrazydeals.com/#logo"},"description":"Canale Telegram italiano di offerte Amazon.it con link affiliati. Prezzi letti dall'API ufficiale di Amazon.","sameAs":["https://t.me/NomadCrazyDeals","https://www.youtube.com/@NomadCrazyDeals","https://www.tiktok.com/@nomadcrazydeals","https://www.instagram.com/nomadcrazydeals/"]},{"@type":"WebSite","@id":"https://nomadcrazydeals.com/#website","url":"https://nomadcrazydeals.com/","name":"NomadCrazyDeals","alternateName":"Nomad Crazy Deals","inLanguage":"it-IT","publisher":{"@id":"https://nomadcrazydeals.com/#organization"}},{"@type":"WebPage","@id":"https://nomadcrazydeals.com/#webpage","url":"https://nomadcrazydeals.com/","name":"NomadCrazyDeals — Offerte Amazon che valgono, ogni giorno","description":"Canale Telegram italiano di offerte Amazon.it: ogni post mostra prezzo attuale e prezzo precedente, e le offerte scadute vengono segnate come terminate.","inLanguage":"it-IT","isPartOf":{"@id":"https://nomadcrazydeals.com/#website"},"about":{"@id":"https://nomadcrazydeals.com/#organization"},"publisher":{"@id":"https://nomadcrazydeals.com/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://nomadcrazydeals.com/og-image-v2.png","width":1200,"height":630}}]}
 </script>
@@ -41,6 +41,8 @@
     --focus:#1c1a17;
     --shadow:rgba(40,30,15,.10);
     --footer-bg:#16140f; --footer-tx:#f4ece0; --footer-mut:#a89c88; --footer-line:#3a342c;
+    --card:#fffdf9; --amber:#f0b429; --coupon-sh1:rgba(40,30,15,.14); --coupon-sh2:rgba(40,30,15,.08);
+    --ease-out:cubic-bezier(.16,1,.3,1);
     color-scheme:light;
   }
   [data-theme="dark"]{
@@ -51,10 +53,14 @@
     --focus:#f4ece0;
     --shadow:rgba(0,0,0,.4);
     --footer-bg:#0f0d0a; --footer-tx:#f4ece0; --footer-mut:#8a8175; --footer-line:#2a2620;
+    --card:#221f1a; --coupon-sh1:rgba(0,0,0,.5); --coupon-sh2:rgba(0,0,0,.35);
     color-scheme:dark;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;scrollbar-color:var(--line) var(--paper);interpolate-size:allow-keywords}
+  ::selection{background:color-mix(in srgb,var(--accent) 26%,transparent);color:var(--ink)}
+  a{text-underline-offset:3px;text-decoration-thickness:1px}
+  a:hover{text-decoration-thickness:2px}
   body{font-family:'Archivo',sans-serif;background:var(--paper);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
   .theme-ready body,.theme-ready .announce,.theme-ready .site-header,.theme-ready footer{transition:background-color .3s,color .3s}
   .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
@@ -65,7 +71,7 @@
   .skip:focus{top:12px}
 
   .announce{background:#1c1a17;color:#f4ece0;font-size:13px;letter-spacing:.04em;text-align:center;padding:9px 16px;font-weight:500}
-  .announce b{color:#f0b429}
+  .announce b{color:var(--amber)}
 
   .site-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
@@ -81,9 +87,9 @@
   .nav-links a:hover{color:var(--accent)}
   .nav-right{display:flex;align-items:center;gap:14px}
   .theme-switch{position:relative;width:58px;height:28px;border-radius:30px;border:1.5px solid var(--ink-soft);background:var(--sand-deep);cursor:pointer;transition:background .3s;padding:0;flex-shrink:0}
-  .theme-switch::before{content:"\263E";position:absolute;top:1.5px;left:2px;width:22px;height:22px;border-radius:30px;background:#fbf8f3;display:flex;align-items:center;justify-content:center;font-size:12px;color:#1c1a17;transition:transform .3s;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+  .theme-switch::before{content:"";position:absolute;top:1.5px;left:2px;width:22px;height:22px;border-radius:30px;background:#fbf8f3 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231c1a17' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z'/%3E%3C/svg%3E") center/13px no-repeat;transition:transform .35s var(--ease-out);box-shadow:0 1px 4px rgba(0,0,0,.25)}
   [data-theme="dark"] .theme-switch{background:var(--accent)}
-  [data-theme="dark"] .theme-switch::before{transform:translateX(29px);content:"\2600"}
+  [data-theme="dark"] .theme-switch::before{transform:translateX(29px);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231c1a17' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'/%3E%3C/svg%3E")}
   .nav-cta{background:var(--ink);color:var(--paper);text-decoration:none;padding:11px 20px;border-radius:9px;font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;transition:transform .15s,background .2s}
   .nav-cta:hover{background:var(--accent);transform:translateY(-1px)}
   @media(max-width:1100px){.nav-links{gap:22px}}
@@ -91,43 +97,55 @@
 
   .hero{position:relative;overflow:hidden;padding:78px 0 64px}
   .hero::before{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(circle at 82% 18%,var(--sand-deep) 0%,transparent 42%),radial-gradient(circle at 12% 90%,color-mix(in srgb,var(--accent) 16%,transparent) 0%,transparent 40%);opacity:.7}
+  [data-theme="dark"] .hero::before{background:radial-gradient(circle at 82% 18%,var(--sand-deep) 0%,transparent 45%);opacity:.6}
   .hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center}
   @media(max-width:880px){.hero-inner{grid-template-columns:1fr;gap:38px}}
-  .badge{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);padding:7px 14px;border-radius:100px;font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:22px}
-  .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 18%,transparent)}
-  h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(38px,5.2vw,62px);line-height:1.02;letter-spacing:-.025em;margin-bottom:22px}
+  h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(38px,5.2vw,64px);line-height:1;letter-spacing:-.02em;word-spacing:.08em;margin-bottom:24px;text-wrap:balance;font-variation-settings:'opsz' 144}
   h1 em{font-style:italic;color:var(--accent);white-space:nowrap}
-  .hero-sub{font-size:18px;color:var(--ink-soft);max-width:480px;margin-bottom:32px}
+  .hero-sub{font-size:18px;color:var(--ink-soft);max-width:34em;margin-bottom:32px;text-wrap:pretty}
   .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  .btn-primary{background:var(--accent);color:#fff;text-decoration:none;padding:15px 26px;border-radius:11px;font-weight:700;font-size:16px;display:inline-flex;align-items:center;gap:10px;box-shadow:0 10px 24px -8px var(--accent);transition:transform .15s,box-shadow .2s}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 30px -10px var(--accent-deep)}
+  .btn-primary{background:var(--accent);color:#fff;text-decoration:none;padding:15px 26px;border-radius:11px;font-weight:700;font-size:16px;display:inline-flex;align-items:center;gap:10px;box-shadow:0 1px 2px rgba(40,20,10,.18),0 10px 20px -10px rgba(40,20,10,.45);transition:transform .15s,box-shadow .2s}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 1px 2px rgba(40,20,10,.18),0 16px 26px -12px rgba(40,20,10,.5)}
+  [data-theme="dark"] .btn-primary,[data-theme="dark"] .btn-primary:hover{box-shadow:0 1px 2px rgba(0,0,0,.4),0 12px 24px -10px rgba(0,0,0,.7)}
   [data-theme="dark"] .btn-primary{color:#16140f}
   .btn-secondary{background:transparent;color:var(--ink);text-decoration:none;padding:15px 22px;border-radius:11px;font-weight:600;font-size:16px;border:1.5px solid var(--ink);display:inline-flex;align-items:center;gap:9px;transition:background .2s,color .2s}
   .btn-secondary:hover{background:var(--ink);color:var(--paper)}
-  .trust-row{display:flex;gap:26px;margin-top:34px;flex-wrap:wrap;list-style:none}
-  .trust-item{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--ink-soft);font-weight:500}
-  .trust-item svg{width:18px;height:18px;color:var(--green);flex-shrink:0}
-  .hero-note{font-size:14px;color:var(--ink-soft);max-width:480px;margin-top:22px;padding-left:12px;border-left:3px solid var(--line)}
-  .hero-note a{color:var(--ink);text-underline-offset:2px}
+  .trust-row{display:grid;gap:10px;margin-top:34px;list-style:none}
+  .trust-item{display:flex;align-items:center;gap:11px;font-size:15px;color:var(--ink);font-weight:500}
+  .trust-item svg{width:22px;height:22px;padding:4px;border-radius:50%;color:var(--green);background:color-mix(in srgb,var(--green) 14%,transparent);flex-shrink:0}
+  .hero-note{font-size:13.5px;line-height:1.6;color:var(--ink-soft);max-width:36em;margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+  .hero-note a{color:var(--ink)}
 
-  .hero-visual{position:relative;height:620px}
-  .deal-card{position:absolute;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 22px 50px -18px var(--shadow);width:255px;text-decoration:none;color:var(--ink)}
-  .deal-card .thumb{height:120px;border-radius:11px;margin-bottom:13px;display:grid;place-items:center;font-size:46px;background:var(--sand-deep)}
-  .dc1{top:0;right:0;z-index:3;transform:rotate(2.5deg)}
-  .dc2{top:150px;left:0;z-index:1;transform:rotate(-3deg)}
-  .dc3{bottom:0;right:0;z-index:2;transform:rotate(1.5deg)}
-  @media(max-width:880px){
-    .hero-visual{position:static;height:auto;width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-    .deal-card{position:relative!important;inset:auto;width:auto;transform:none!important}
-  }
-  .dc-name{font-weight:600;font-size:14px;margin-bottom:6px;line-height:1.3}
-  .dc-price{display:flex;align-items:baseline;gap:8px}
-  .dc-now{font-family:'Fraunces',serif;font-weight:700;font-size:20px;color:var(--ink)}
-  .dc-was{font-size:13px;color:var(--ink-soft);text-decoration:line-through}
+  /* Deal cards: markup comes from update_site.sh (DEALS_START/END), only restyle here */
+  .hero-visual{position:relative;display:grid;gap:14px;align-content:center;width:100%;max-width:470px;justify-self:end;filter:drop-shadow(0 1px 1.5px var(--coupon-sh1)) drop-shadow(0 12px 16px var(--coupon-sh2))}
+  .hero-visual::before{content:"Offerte in evidenza";font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:2px}
+  .hero-visual.reveal{animation:none;opacity:1;transform:none}
+  .deal-card{--stub:104px;--notch:9px;position:relative;display:grid;grid-template-columns:var(--stub) 1fr auto;grid-template-rows:1fr 1fr;grid-template-areas:"tag name go" "tag price go";min-height:116px;background:var(--card);border-radius:16px;text-decoration:none;color:var(--ink);
+    -webkit-mask:radial-gradient(circle var(--notch) at calc(var(--stub) - 1px) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle var(--notch) at calc(var(--stub) - 1px) 100%,#0000 98%,#000) bottom/100% 51% no-repeat;
+    mask:radial-gradient(circle var(--notch) at calc(var(--stub) - 1px) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle var(--notch) at calc(var(--stub) - 1px) 100%,#0000 98%,#000) bottom/100% 51% no-repeat;
+    transition:transform .45s var(--ease-out);animation:coupon-in .9s var(--ease-out) backwards}
+  .dc1{animation-delay:.12s}.dc2{animation-delay:.22s}.dc3{animation-delay:.32s}
+  @keyframes coupon-in{from{opacity:0;transform:translateX(32px);filter:blur(6px)}}
+  .deal-card:hover{transform:translateX(-6px)}
+  .deal-card:focus-visible{-webkit-mask:none;mask:none;outline:3px solid var(--focus);outline-offset:3px}
+  .deal-card .thumb{display:none}
+  .dc-tag{grid-area:tag;display:grid;place-items:center;background:var(--accent);color:#fff;font-family:'Fraunces',serif;font-weight:900;font-size:30px;letter-spacing:-.03em;font-variant-numeric:tabular-nums;border-right:2px dashed color-mix(in srgb,currentColor 45%,transparent)}
+  [data-theme="dark"] .dc-tag{color:#16140f}
+  .dc-name{grid-area:name;align-self:end;padding:0 8px 4px 22px;font-weight:600;font-size:16px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .dc-price{grid-area:price;align-self:start;padding:0 8px 0 22px;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+  .dc-now{font-family:'Fraunces',serif;font-weight:700;font-size:24px;letter-spacing:-.01em;color:var(--ink);font-variant-numeric:tabular-nums}
+  .dc-was{font-size:14px;color:var(--ink-soft);text-decoration:line-through;font-variant-numeric:tabular-nums}
   .dc-now::before{content:"" / "Prezzo attuale: "}
   .dc-was::before{content:"" / "Prezzo precedente: "}
-  .dc-tag{position:absolute;top:13px;left:13px;background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:4px 9px;border-radius:7px}
-  [data-theme="dark"] .dc-tag{color:#16140f}
+  .deal-card::after{content:"";grid-area:go;align-self:center;width:20px;height:20px;margin-right:22px;background:currentColor;color:var(--ink-soft);
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E") center/contain no-repeat;
+    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8 7h9v9'/%3E%3C/svg%3E") center/contain no-repeat;
+    transition:transform .45s var(--ease-out),color .2s}
+  .deal-card:hover::after{transform:translate(2px,-2px);color:var(--accent)}
+  .hero-inner:not(:has(.deal-card)){grid-template-columns:1fr}
+  .hero-visual:not(:has(.deal-card)){display:none}
+  @media(max-width:880px){.hero-visual{max-width:none;justify-self:stretch}}
+  @media(max-width:600px){.deal-card{--stub:86px;min-height:104px}.dc-tag{font-size:25px}.dc-name{font-size:15px;padding-left:18px}.dc-price{padding-left:18px}.dc-now{font-size:21px}.deal-card::after{margin-right:16px}}
 
   .sec{padding:64px 0}
   .sec.sec-tight{padding-top:14px}
@@ -139,30 +157,49 @@
 
   .tg-band{margin:30px auto 0;padding:0}
   .tg-inner{background:linear-gradient(135deg,#221f1b,#332d25);border-radius:24px;padding:54px 50px;position:relative;overflow:hidden;display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center}
-  .tg-inner::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;background:radial-gradient(circle,var(--tg) 0%,transparent 70%);opacity:.35}
   @media(max-width:760px){.tg-inner{grid-template-columns:1fr;padding:38px 28px}}
   .tg-inner h2{font-family:'Fraunces',serif;font-weight:900;color:#fff;font-size:clamp(26px,3.4vw,38px);letter-spacing:-.02em;line-height:1.08;margin-bottom:14px;position:relative;z-index:1}
   .tg-inner p{color:#c9bda6;font-size:16px;margin-bottom:26px;max-width:440px;position:relative;z-index:1}
   .tg-cta{background:var(--tg-btn);color:#fff;text-decoration:none;font-weight:700;font-size:16px;padding:15px 26px;border-radius:11px;display:inline-flex;align-items:center;gap:11px;position:relative;z-index:1;transition:transform .15s,background .2s}
   .tg-cta:hover{transform:translateY(-2px);background:var(--tg-btn-hover)}
-  .tg-stat{position:relative;z-index:1;text-align:center}
-  .tg-stat .big{font-family:'Fraunces',serif;font-weight:900;font-size:54px;color:#f0b429;line-height:1}
-  .tg-stat .lbl{color:#c9bda6;font-size:14px;margin-top:6px}
+  .tg-stat{position:relative;z-index:1;display:grid;justify-items:center;text-align:center}
+  .dial{position:relative;width:188px;height:188px;display:grid;place-items:center}
+  .dial svg{position:absolute;inset:0;width:100%;height:100%}
+  .dial .ticks{stroke:#5b5146;stroke-width:2;stroke-linecap:round}
+  .dial .track{fill:none;stroke:#3a342c;stroke-width:6}
+  .dial .arc{fill:none;stroke:var(--amber);stroke-width:6;stroke-linecap:round}
+  .tg-stat .big{position:relative;font-family:'Fraunces',serif;font-weight:900;font-size:44px;letter-spacing:-.02em;color:var(--amber);line-height:1}
+  .tg-stat .lbl{color:#c9bda6;font-size:14px;margin-top:14px}
 
   .how{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   @media(max-width:760px){.how{grid-template-columns:1fr}}
-  .step{padding:6px 4px}
-  .step .num{font-family:'Fraunces',serif;font-weight:900;font-size:20px;color:var(--accent);width:46px;height:46px;border:1.5px solid var(--accent);border-radius:12px;display:grid;place-items:center;margin-bottom:16px}
-  .step h3{font-family:'Fraunces',serif;font-weight:700;font-size:19px;margin-bottom:7px}
-  .step p{color:var(--ink-soft);font-size:15px}
+  .how{position:relative;gap:40px}
+  .how::before{content:"";position:absolute;top:23px;left:23px;right:calc((100% - 80px) / 3 - 23px);height:1.5px;background:linear-gradient(90deg,var(--accent),var(--line))}
+  .step{position:relative;padding:0}
+  .step .num{position:relative;font-family:'Fraunces',serif;font-weight:900;font-size:19px;color:var(--accent);width:46px;height:46px;border:1.5px solid var(--accent);border-radius:50%;background:var(--paper);display:grid;place-items:center;margin-bottom:20px}
+  .step:first-child .num{background:var(--accent);color:var(--paper)}
+  .step h3{font-family:'Fraunces',serif;font-weight:700;font-size:20px;letter-spacing:-.01em;margin-bottom:8px}
+  .step p{color:var(--ink-soft);font-size:15.5px;max-width:34ch;text-wrap:pretty}
+  @media(max-width:760px){
+    .how{gap:28px}
+    .how::before{top:23px;bottom:23px;left:22px;right:auto;width:1.5px;height:auto;background:linear-gradient(180deg,var(--accent),var(--line))}
+    .step{display:grid;grid-template-columns:46px 1fr;column-gap:18px}
+    .step .num{grid-row:span 2;margin:0}
+    .step h3{padding-top:10px}
+  }
 
-  .faq{display:grid;gap:12px;max-width:760px}
-  .faq details{border:1px solid var(--line);border-radius:14px;background:var(--paper);padding:0 20px}
-  .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;font-weight:600;font-size:17px;padding:18px 0}
+  .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+  @media(max-width:880px){.faq-grid{grid-template-columns:1fr;gap:0}.faq-aside{display:contents}.faq-aside .sec-more{order:3}}
+  .faq{display:grid;border-top:1px solid var(--line)}
+  .faq details{border-bottom:1px solid var(--line)}
+  .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;font-weight:600;font-size:17.5px;padding:22px 2px;transition:color .2s}
+  .faq summary:hover{color:var(--accent)}
   .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+";font-family:'Fraunces',serif;font-weight:900;color:var(--accent)}
-  .faq details[open] summary::after{content:"–"}
-  .faq details p{color:var(--ink-soft);font-size:15.5px;padding-bottom:18px}
+  .faq summary::after{content:"";flex-shrink:0;width:14px;height:14px;color:var(--accent);background:linear-gradient(currentColor,currentColor) center/100% 2px no-repeat,linear-gradient(currentColor,currentColor) center/2px 100% no-repeat;transition:transform .35s var(--ease-out)}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq details::details-content{block-size:0;overflow:clip;transition:block-size .35s var(--ease-out),content-visibility .35s allow-discrete}
+  .faq details[open]::details-content{block-size:auto}
+  .faq details p{color:var(--ink-soft);font-size:16px;line-height:1.65;padding:0 40px 22px 2px;max-width:62ch}
 
   footer{background:var(--footer-bg);color:var(--footer-tx);margin-top:40px;padding:56px 0 28px}
   .foot-top{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:34px;padding-bottom:40px;border-bottom:1px solid var(--footer-line)}
@@ -172,10 +209,10 @@
   .foot-cta{margin-top:22px;font-size:15px;padding:12px 20px}
   .foot-title{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--footer-mut);margin-bottom:16px;font-weight:600}
   .foot-col a{display:block;color:var(--footer-tx);text-decoration:none;font-size:14.5px;margin-bottom:11px;opacity:.85;transition:opacity .2s}
-  .foot-col a:hover{opacity:1;color:#f0b429}
+  .foot-col a:hover{opacity:1;color:var(--amber)}
   .foot-social{display:flex;gap:12px;margin-top:22px}
   .foot-social a{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#26221c;color:var(--footer-tx);opacity:.9;transition:background .2s,color .2s,opacity .2s}
-  .foot-social a:hover{opacity:1;color:#f0b429;background:#332d25}
+  .foot-social a:hover{opacity:1;color:var(--amber);background:#332d25}
   .foot-social svg{width:20px;height:20px;fill:currentColor}
   .foot-bottom{padding-top:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
   .foot-bottom p{color:var(--footer-mut);font-size:13px}
@@ -243,7 +280,6 @@
 <section class="hero" aria-labelledby="hero-title">
   <div class="wrap hero-inner">
     <div class="hero-text">
-      <p class="badge"><span class="dot" aria-hidden="true"></span> Canale Telegram · offerte Amazon.it</p>
       <h1 id="hero-title">Le offerte Amazon <em>che valgono</em>, ogni giorno.</h1>
       <p class="hero-sub">NomadCrazyDeals è un canale Telegram italiano di offerte Amazon.it. Ogni post mostra prezzo attuale e prezzo precedente letti da Amazon, e quando l'offerta finisce il post viene segnato «Offerta terminata».</p>
       <div class="hero-ctas">
@@ -292,9 +328,9 @@
       <p>Da dove vengono i prezzi, quali offerte passano i filtri e cosa succede dopo la pubblicazione.</p>
     </div>
     <div class="how">
-      <div class="step reveal d1"><div class="num" aria-hidden="true">1</div><h3>Prezzi presi da Amazon</h3><p>Prezzo attuale e prezzo di riferimento vengono letti dall'API ufficiale di Amazon. Lo sconto è calcolato sul prezzo di riferimento indicato da Amazon.</p></div>
-      <div class="step reveal d2"><div class="num" aria-hidden="true">2</div><h3>Filtri prima di pubblicare</h3><p>Passano solo prodotti disponibili e venduti tramite buy box. Filtri automatici servono a escludere brand sconosciuti con sconti irrealistici e prezzi di riferimento gonfiati. Lo stesso prodotto non torna prima di 30 giorni.</p></div>
-      <div class="step reveal d3"><div class="num" aria-hidden="true">3</div><h3>Controllo dopo la pubblicazione</h3><p>Ogni 2 ore le offerte del canale vengono ricontrollate: se l'offerta a tempo scade, il prodotto va esaurito o lo sconto sparisce, il post viene segnato «Offerta terminata».</p></div>
+      <div class="step"><div class="num" aria-hidden="true">1</div><h3>Prezzi presi da Amazon</h3><p>Prezzo attuale e prezzo di riferimento vengono letti dall'API ufficiale di Amazon. Lo sconto è calcolato sul prezzo di riferimento indicato da Amazon.</p></div>
+      <div class="step"><div class="num" aria-hidden="true">2</div><h3>Filtri prima di pubblicare</h3><p>Passano solo prodotti disponibili e venduti tramite buy box. Filtri automatici servono a escludere brand sconosciuti con sconti irrealistici e prezzi di riferimento gonfiati. Lo stesso prodotto non torna prima di 30 giorni.</p></div>
+      <div class="step"><div class="num" aria-hidden="true">3</div><h3>Controllo dopo la pubblicazione</h3><p>Ogni 2 ore le offerte del canale vengono ricontrollate: se l'offerta a tempo scade, il prodotto va esaurito o lo sconto sparisce, il post viene segnato «Offerta terminata».</p></div>
     </div>
     <p class="sec-more"><a href="/come-funziona/">Tutti i dettagli su prezzi, filtri e link affiliati →</a></p>
   </div>
@@ -312,7 +348,10 @@
         </a>
       </div>
       <div class="tg-stat">
-        <div class="big">2 ore</div>
+        <div class="dial">
+          <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false"><g class="ticks"><line x1="100.0" y1="20.0" x2="100.0" y2="7.0"/><line x1="142.0" y1="27.3" x2="146.5" y2="19.5"/><line x1="172.7" y1="58.0" x2="180.5" y2="53.5"/><line x1="180.0" y1="100.0" x2="193.0" y2="100.0"/><line x1="172.7" y1="142.0" x2="180.5" y2="146.5"/><line x1="142.0" y1="172.7" x2="146.5" y2="180.5"/><line x1="100.0" y1="180.0" x2="100.0" y2="193.0"/><line x1="58.0" y1="172.7" x2="53.5" y2="180.5"/><line x1="27.3" y1="142.0" x2="19.5" y2="146.5"/><line x1="20.0" y1="100.0" x2="7.0" y2="100.0"/><line x1="27.3" y1="58.0" x2="19.5" y2="53.5"/><line x1="58.0" y1="27.3" x2="53.5" y2="19.5"/></g><circle class="track" cx="100" cy="100" r="72"/><path class="arc" d="M100 28A72 72 0 0 1 162.35 64"/></svg>
+          <div class="big">2 ore</div>
+        </div>
         <div class="lbl">ogni quanto le offerte pubblicate<br>vengono ricontrollate</div>
       </div>
     </div>
@@ -320,15 +359,17 @@
 </section>
 
 <section class="sec" id="domande" aria-labelledby="faq-title">
-  <div class="wrap">
-    <div class="sec-head"><h2 id="faq-title">Domande frequenti</h2></div>
+  <div class="wrap faq-grid">
+    <div class="faq-aside">
+      <div class="sec-head"><h2 id="faq-title">Domande frequenti</h2></div>
+      <p class="sec-more"><a href="/come-funziona/#domande">Tutte le domande frequenti →</a></p>
+    </div>
     <div class="faq">
       <details><summary>Da dove vengono prezzi e sconti?</summary><p>Dall'API ufficiale di Amazon, al momento della selezione. Lo sconto è calcolato sul prezzo di riferimento indicato da Amazon.</p></details>
       <details><summary>Il prezzo del post è garantito?</summary><p>No. Prezzi e disponibilità possono cambiare in qualsiasi momento: vale il prezzo mostrato su Amazon.it quando acquisti.</p></details>
       <details><summary>Cosa significa «Offerta terminata»?</summary><p>Che un controllo automatico, fatto ogni 2 ore, ha rilevato che l'offerta a tempo è scaduta, il prodotto è esaurito o lo sconto non c'è più.</p></details>
       <details><summary>Se compro da un link pago di più?</summary><p>No. I link sono affiliati: sugli acquisti idonei NomadCrazyDeals riceve una commissione da Amazon, il prezzo per te non cambia.</p></details>
     </div>
-    <p class="sec-more"><a href="/come-funziona/#domande">Tutte le domande frequenti →</a></p>
   </div>
 </section>
 </main>
