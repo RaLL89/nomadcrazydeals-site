@@ -9,7 +9,8 @@ sys.path.insert(0, "/opt/paapi")
 from pipeline import _brand_adj, BLOCKLIST_PENALTY, score_product, macro_category, product_headline
 
 HIST = sys.argv[1] if len(sys.argv) > 1 else "/opt/paapi/data/posts_history.json"
-BLOCK = ["smartwatch", "orologio smart", "power bank", "magnetic", "scarpe"]
+# 26/10 (audit): stessa lista di build_props.py (video) + "scarpe" (solo sito, scelta del 17/10).
+BLOCK = ["smartwatch", "orologio smart", "power bank", "magnetic", "robot aspirapolvere", "aspirapolvere senza", "scarpe"]
 BROKEN_RE = re.compile(r"AmazonIt|[A-Za-z]/[A-Z0-9]{3,}")
 MESI = ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "nov", "dic"]
 MESI_LUNGHI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
@@ -58,7 +59,25 @@ def select(hist, today):
         rows.append({"e": e, "s": s, "nn": nn, "on": on, "img": img, "ts": ts, "head": product_headline(e), "short": product_headline(e, limit=56),
                      "url": e.get("url") or "https://t.me/NomadCrazyDeals", "score": score_product(e)})
     rows.sort(key=lambda r: -r["score"])
-    return rows
+    return dedup_brand(rows)
+
+
+def brand_root(title):
+    """Prima parola del titolo (come dedup_brand in build_props.py): 'LG OLED...' e 'LG QNED...' -> 'lg'."""
+    words = re.sub(r"\s+", " ", title or "").strip().split()
+    return words[0].lower().strip(",.") if words else ""
+
+
+def dedup_brand(rows):
+    """26/10 (audit): una sola scheda per brand in home, resta la migliore per punteggio (prima erano uscite 2 TV LG insieme)."""
+    seen_b, out = set(), []
+    for r in rows:
+        root = brand_root(r["head"] or r["e"].get("title") or "")
+        if root in seen_b:
+            continue
+        seen_b.add(root)
+        out.append(r)
+    return out
 
 
 def split(rows):
