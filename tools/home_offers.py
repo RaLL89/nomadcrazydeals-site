@@ -268,7 +268,7 @@ def deal(r, now):
             f'          <h3>{E(r["head"])}</h3>\n'
             f'          <div class="price-row"><span class="now">{euro(r["nn"])}</span><span class="was">{euro(r["on"])}</span></div>\n'
             f'          <p class="saved">Risparmi {saved} €</p>\n'
-            f'          <a href="{E(r["url"])}" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>\n'
+            f'          <a href="{E(r["url"])}" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: {E(r["head"])}">Vedi su Amazon</a>\n'
             f'        </div>\n'
             f'      </article>')
 

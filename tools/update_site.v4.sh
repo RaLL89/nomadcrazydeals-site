@@ -1,13 +1,15 @@
 #!/bin/bash
-# update_site.sh v4 (09/11/2026) - gira sull'HOST mayhem (cron 9:15, 13:15, 17:15, 21:15) al posto della v3.
+# update_site.sh v4.1 (10/11/2026) - gira sull'HOST mayhem (cron 9:15, 13:15, 17:15, 21:15) al posto della v3.
 # Home v4: in alto le 3 offerte bomba (DEALS), sotto la griglia filtrabile fino a 24 offerte (DEALS2).
 # Le genera tools/home_offers.py del repo del sito, sui post veri di CT102 (eseguito da stdin).
 # Novita' rispetto alla v3:
-#  - "niente di nuovo": confronta i blocchi generati con quelli gia' nella home togliendo le parti che cambiano solo
-#    con l'orologio (<time>...</time>: "Aggiornato oggi alle", "oggi 14:32"). Se le offerte sono le stesse esce con 0
+#  - "niente di nuovo": confronta i blocchi generati con quelli della home COMMITTATA (git show HEAD:...),
+#    togliendo le parti che cambiano solo con l'orologio (<time>...</time>). Se le offerte sono le stesse esce con 0
 #    PRIMA di toccare il checkout (niente commit, niente push).
-#  - un git push fallito fa uscire lo script con errore e una riga chiara nel log (la v3 lo inghiottiva);
-#    "niente da committare" resta un'uscita pulita. Un commit rimasto non pubblicato viene ripubblicato al giro dopo.
+#  - commit fallito (non "niente da committare") o push fallito = uscita con errore e riga ERRORE nel log.
+#    Se il commit fallisce l'index del checkout torna com'era (git checkout --), cosi' il giro dopo riprova.
+#    Un commit rimasto non pubblicato viene ripubblicato al giro dopo.
+#  - v4.1: lucchetto (flock) per non sovrapporre un lancio a mano e quello del cron.
 # Come la v3: se il generatore fallisce o i marcatori mancano/sono doppi, esce senza toccare il sito (set -e).
 # Rollback: cp /root/update_site.sh.bak_pre_s_* /root/update_site.sh  (+ crontab /root/crontab.bak_pre_s_*)
 set -euo pipefail
@@ -17,10 +19,16 @@ CT_SITE=104
 SITE_DIR=/home/claude/projects/nomadcrazydeals-site
 INDEX_REMOTE="$SITE_DIR/public/index.html"
 TMP=/tmp/ncd_site_build
+LOCK=/run/lock/ncd_update_site.lock
+PUSHLOG=/tmp/ncd_push.log          # dentro CT104
 mkdir -p "$TMP"
-echo "##### $(date '+%F %T') update_site v4 #####"
+echo "##### $(date '+%F %T') update_site v4.1 #####"
+
+exec 9>"$LOCK"
+if ! flock -w 900 9; then echo "ERRORE: un altro update_site e' in corso da oltre 15 minuti: esco senza toccare nulla"; exit 1; fi
 
 site() { pct exec $CT_SITE -- su - claude -c "cd $SITE_DIR && $1"; }
+push_main() { site "git push origin main > $PUSHLOG 2>&1; rc=\$?; tail -5 $PUSHLOG; exit \$rc"; }
 
 echo "=== 0. il checkout del sito deve essere su main ==="
 BR=$(site "git rev-parse --abbrev-ref HEAD")
@@ -28,9 +36,7 @@ if [ "$BR" != "main" ]; then echo "checkout su '$BR', non main: esco senza tocca
 AHEAD=$(site "git rev-list --count origin/main..main" || echo 0)
 if [ "$AHEAD" != "0" ]; then
   echo "ci sono $AHEAD commit non pubblicati (push fallito in un giro precedente?): riprovo il push"
-  if ! site "git push origin main > /tmp/ncd_push.log 2>&1; rc=\$?; tail -5 /tmp/ncd_push.log; exit \$rc"; then
-    echo "ERRORE: git push fallito, il sito online NON e' aggiornato"; exit 1
-  fi
+  if ! push_main; then echo "ERRORE: git push fallito, il sito online NON e' aggiornato"; exit 1; fi
 fi
 
 echo "=== 1. genero le offerte dai post veri (CT$CT_DATA) ==="
@@ -41,14 +47,17 @@ grep -q '<!--SPLIT-->' "$TMP/offers.html"
 echo "--- offerte generate: $(grep -c 'class="p-card' "$TMP/offers.html") in alto, $(grep -c '<article class="deal"' "$TMP/offers.html" || true) nella griglia ---"
 grep -o 'class="name">[^<]*' "$TMP/offers.html" || true
 
-echo "=== 2. pull index da CT$CT_SITE ==="
-pct pull $CT_SITE "$INDEX_REMOTE" "$TMP/index.html"
+echo "=== 2. index committato (HEAD) da CT$CT_SITE ==="
+# la versione committata, non il file del checkout: se un giro precedente si e' fermato dopo aver scritto l'index
+# ma prima del commit, il confronto deve vedere che online c'e' ancora la versione vecchia
+site "git show HEAD:public/index.html" > "$TMP/index.html"
+test -s "$TMP/index.html"
 
 echo "=== 3. sostituisco tra i marcatori (se le offerte sono cambiate) ==="
 set +e
-OFFERS="$TMP/offers.html" python3 - << 'PYEOF'
+IDX="$TMP/index.html" OFFERS="$TMP/offers.html" python3 - << 'PYEOF'
 import os, re
-idx = "/tmp/ncd_site_build/index.html"
+idx = os.environ["IDX"]
 hero, rest = open(os.environ["OFFERS"], encoding="utf-8").read().split("<!--SPLIT-->")
 s = open(idx, encoding="utf-8").read()
 for m in ("DEALS", "DEALS2"):
@@ -77,8 +86,15 @@ pct push $CT_SITE "$TMP/index.html" "$INDEX_REMOTE"
 echo "=== 5. commit + push come utente claude ==="
 site "git add public/index.html && if git diff --cached --quiet; then echo 'NIENTE DA COMMITTARE'; exit 10; fi; git commit -q -m 'auto: offerte aggiornate' && git log -1 --format='commit %h %s'" && RC=0 || RC=$?
 if [ $RC -eq 10 ]; then echo "=== FATTO: niente da committare ==="; exit 0; fi
-if [ $RC -ne 0 ]; then echo "ERRORE: git commit fallito (rc=$RC)"; exit 1; fi
-if ! site "git push origin main > /tmp/ncd_push.log 2>&1; rc=\$?; tail -5 /tmp/ncd_push.log; exit \$rc"; then
+if [ $RC -ne 0 ]; then
+  if site "git reset -q -- public/index.html && git checkout -- public/index.html"; then
+    echo "ERRORE: git commit fallito (rc=$RC): index del checkout riportato a HEAD, il sito online NON e' aggiornato (si riprova al prossimo giro)"
+  else
+    echo "ERRORE: git commit fallito (rc=$RC) e non riesco a riportare l'index a HEAD: il sito online NON e' aggiornato; il prossimo giro confronta con HEAD e riprova"
+  fi
+  exit 1
+fi
+if ! push_main; then
   echo "ERRORE: git push fallito, il sito online NON e' aggiornato (il commit resta in locale e si riprova al prossimo giro)"; exit 1
 fi
 

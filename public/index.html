@@ -137,6 +137,7 @@ img{max-width:100%}
 .chips{display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; padding:2px 2px 4px; margin:-2px -2px 6px; -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent); mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}
 .chips::-webkit-scrollbar{display:none}
 .chip{flex:none; display:inline-flex; align-items:center; gap:7px; height:40px; padding:0 15px; border-radius:var(--radius-pill); border:1px solid var(--line); background:var(--card); color:var(--ink); font:600 13.5px/1 var(--sans); cursor:pointer; transition:background .15s, border-color .15s, color .15s}
+.chip[hidden]{display:none}
 .chip:hover{border-color:var(--ink-faint)}
 .chip .n{font-size:11.5px; font-weight:700; color:var(--ink-faint); font-variant-numeric:tabular-nums}
 .chip[aria-pressed="true"]{background:var(--btn-bg); border-color:var(--btn-bg); color:var(--btn-fg)}
@@ -399,7 +400,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
     <div class="results reveal d1">
       <p class="count" id="count" aria-live="polite"></p>
 <!--DEALS2_START-->
-      <p class="updated" data-window="48">Aggiornato <time datetime="2026-11-10T00:10+01:00" data-ts="1794265831" data-fmt="upd">oggi alle 00:10</time></p>
+      <p class="updated" data-window="48">Aggiornato <time datetime="2026-11-10T00:21+01:00" data-ts="1794266488" data-fmt="upd">oggi alle 00:21</time></p>
       <div class="deals" id="deals">
       <article class="deal" data-cat="beauty" data-off="42" data-price="9.95" data-ts="1794256701" data-q="nivea men power serum antietà 2 in 1 antimacchia e antirughe (1 x 30 ml), siero facciale con luminous 630 da uomo uomo, crema sierum acido ialuronico sieri liquidi per il viso beauty">
         <div class="thumb"><img src="https://m.media-amazon.com/images/I/41swgWfs9VL._SL500_.jpg" alt="" width="500" height="500" loading="lazy" decoding="async"><span class="off-badge">−42%</span><span class="flags"><span class="flag flag-bomb">🔥 Bomba</span></span></div>
@@ -408,7 +409,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>NIVEA MEN POWER Serum Antietà 2 in 1 Antimacchia e Antirughe (1 x 30 ml), Siero facciale con Luminous 630 da uomo</h3>
           <div class="price-row"><span class="now">9,95 €</span><span class="was">17,15 €</span></div>
           <p class="saved">Risparmi 7 €</p>
-          <a href="https://www.amazon.it/dp/B0C8PKN9Y5?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_B_20261109_bellezza_salute_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0C8PKN9Y5?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_B_20261109_bellezza_salute_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: NIVEA MEN POWER Serum Antietà 2 in 1 Antimacchia e Antirughe (1 x 30 ml), Siero facciale con Luminous 630 da uomo">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="casa" data-off="32" data-price="169.99" data-ts="1794251410" data-q="lagostina ingenio inox set di pentole e padelle in acciaio inox, 20 pezzi, adatto ad induzione, batteria con 3 casseruole, padelle, tegame,6 coperchi, 5 utensili cucina,2 manici amovibili padella da cucina casa &amp;">
@@ -418,7 +419,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Lagostina Ingenio Inox Set di Pentole e Padelle in Acciaio Inox</h3>
           <div class="price-row"><span class="now">169,99 €</span><span class="was">249,90 €</span></div>
           <p class="saved">Risparmi 80 €</p>
-          <a href="https://www.amazon.it/dp/B09HQVYWGF?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261109_cucina_casa_fam" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B09HQVYWGF?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261109_cucina_casa_fam" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Lagostina Ingenio Inox Set di Pentole e Padelle in Acciaio Inox">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="tech" data-off="44" data-price="99.95" data-ts="1794248343" data-q="bose soundlink flex (2a gen) altoparlante portatile bluetooth alta fedeltà, 12 h autonomia, nero speaker stereo impermeabile e antipolvere, casse portatili tech">
@@ -428,7 +429,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Bose SoundLink Flex (2a Gen) Altoparlante Portatile Bluetooth Alta Fedeltà, 12 h Autonomia, Nero</h3>
           <div class="price-row"><span class="now">99,95 €</span><span class="was">179,95 €</span></div>
           <p class="saved">Risparmi 80 €</p>
-          <a href="https://www.amazon.it/dp/B0D6WD2QSQ?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261109_tech_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0D6WD2QSQ?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261109_tech_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Bose SoundLink Flex (2a Gen) Altoparlante Portatile Bluetooth Alta Fedeltà, 12 h Autonomia, Nero">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="beauty" data-off="43" data-price="14.90" data-ts="1794245876" data-q="collistar doccia shampoo 3 in 1 uomo, corpo e capelli, 250 ml, texture cremosa, deterge, tonifica ml | tonifica, idrata capelli bagnoschiuma, docciaschiuma gel beauty">
@@ -438,7 +439,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Collistar Doccia Shampoo 3 in 1 Uomo, Corpo e Capelli, 250 ml, Texture Cremosa, Deterge, Tonifica</h3>
           <div class="price-row"><span class="now">14,90 €</span><span class="was">26,00 €</span></div>
           <p class="saved">Risparmi 11 €</p>
-          <a href="https://www.amazon.it/dp/B0CXQ87GS2?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261109_bellezza_salute_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0CXQ87GS2?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261109_bellezza_salute_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Collistar Doccia Shampoo 3 in 1 Uomo, Corpo e Capelli, 250 ml, Texture Cremosa, Deterge, Tonifica">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="beauty" data-off="32" data-price="14.09" data-ts="1794239659" data-q="gillette series gel da barba idratante con eucalipto, confezione 6x250ml, eucalipto 6x250ml | protezione completa dalle irritazioni, aiuta a proteggere tagli, bruciature, arrossamenti schiume beauty">
@@ -448,7 +449,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Gillette Series Gel da Barba Idratante con Eucalipto, Confezione da 6x250ml, Eucalipto</h3>
           <div class="price-row"><span class="now">14,09 €</span><span class="was">20,71 €</span></div>
           <p class="saved">Risparmi 7 €</p>
-          <a href="https://www.amazon.it/dp/B0C3771XSH?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_B_20261109_bellezza_salute_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0C3771XSH?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_B_20261109_bellezza_salute_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Gillette Series Gel da Barba Idratante con Eucalipto, Confezione da 6x250ml, Eucalipto">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="casa" data-off="50" data-price="149.00" data-ts="1794236661" data-q="tineco ifloor 5 breeze complete lavapavimenti, design leggero, autopulizia, aspira e lava in un solo passaggio autopulizia | passaggio, durata di funzionamento prolungata senza interruzioni, pulizia dei bordi potenziata scope elettriche casa &amp; cucina">
@@ -458,7 +459,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Tineco iFLOOR 5 Breeze Complete Lavapavimenti, Design Leggero, Autopulizia, Aspira e Lava in un Solo Passaggio</h3>
           <div class="price-row"><span class="now">149,00 €</span><span class="was">299,00 €</span></div>
           <p class="saved">Risparmi 150 €</p>
-          <a href="https://www.amazon.it/dp/B0CRR9KDK8?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_B_20261109_cucina_casa_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0CRR9KDK8?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_B_20261109_cucina_casa_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Tineco iFLOOR 5 Breeze Complete Lavapavimenti, Design Leggero, Autopulizia, Aspira e Lava in un Solo Passaggio">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="beauty" data-off="56" data-price="8.90" data-ts="1794233388" data-q="l&#x27;oreal men expert l&#x27;oréal paris hydra energetic crema anti-fatica, 100 ml, pelle rivitalizzata ml | rivitalizzata, levigata e idratata, occhiaie rughe sottili ridotte, arricchita con proteine vitamina c creme da giorno per il viso beauty">
@@ -468,7 +469,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>L&#x27;Oreal Men Expert L&#x27;Oréal Paris Men Expert Hydra Energetic Crema Anti-Fatica, 100 ml, Pelle Rivitalizzata</h3>
           <div class="price-row"><span class="now">8,90 €</span><span class="was">20,41 €</span></div>
           <p class="saved">Risparmi 12 €</p>
-          <a href="https://www.amazon.it/dp/B08CCM3Q2T?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261109_bellezza_salute_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B08CCM3Q2T?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261109_bellezza_salute_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: L&#x27;Oreal Men Expert L&#x27;Oréal Paris Men Expert Hydra Energetic Crema Anti-Fatica, 100 ml, Pelle Rivitalizzata">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="moda" data-off="68" data-price="12.63" data-ts="1794231673" data-q="puma liga baselayer tee ls maglia a manica lunga, nero, xl uomo child 2 moda">
@@ -478,7 +479,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Puma Liga Baselayer Tee Ls Maglia A Manica Lunga, Nero, XL Uomo</h3>
           <div class="price-row"><span class="now">12,63 €</span><span class="was">39,95 €</span></div>
           <p class="saved">Risparmi 27 €</p>
-          <a href="https://www.amazon.it/dp/B077SHQV2S?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261109_moda_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B077SHQV2S?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261109_moda_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Puma Liga Baselayer Tee Ls Maglia A Manica Lunga, Nero, XL Uomo">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="casa" data-off="42" data-price="75.90" data-ts="1794226663" data-q="girmi im21a impastatrice planetaria 5l, 1500w max, 10 velocità+pulse, grigio impastatrici casa &amp; cucina">
@@ -488,7 +489,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Girmi IM21A Impastatrice Planetaria 5L, 1500W Max, 10 Velocità+Pulse, Grigio</h3>
           <div class="price-row"><span class="now">75,90 €</span><span class="was">129,90 €</span></div>
           <p class="saved">Risparmi 54 €</p>
-          <a href="https://www.amazon.it/dp/B0HKRZ5J12?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261109_cucina_casa_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0HKRZ5J12?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261109_cucina_casa_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Girmi IM21A Impastatrice Planetaria 5L, 1500W Max, 10 Velocità+Pulse, Grigio">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="tech" data-off="55" data-price="311.99" data-ts="1794224138" data-q="cecotec robot rasaerba conga grasshopper 800 connected. tagliaerba con app app, motore brushless, superfici di 800m2, pendenza massima 35%, regolatore delle lame taglio, sensore rilevatore pioggia tech">
@@ -498,7 +499,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Cecotec Robot Rasaerba Conga Grasshopper 800 Connected. Tagliaerba con App</h3>
           <div class="price-row"><span class="now">311,99 €</span><span class="was">695,00 €</span></div>
           <p class="saved">Risparmi 383 €</p>
-          <a href="https://www.amazon.it/dp/B0BQ1KMPKP?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_B_20261109_altro_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0BQ1KMPKP?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_B_20261109_altro_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Cecotec Robot Rasaerba Conga Grasshopper 800 Connected. Tagliaerba con App">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="casa" data-off="37" data-price="13.29" data-ts="1794222245" data-q="finish ultimate gel, detersivo per lavastoviglie, 120 lavaggi, fresh, liquido fragranza fresh | extra potere sgrassante, brillantezza, pulizia profonda lavastoviglie casa &amp; cucina">
@@ -508,7 +509,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Finish Ultimate Gel, Detersivo per Lavastoviglie, 120 Lavaggi, Fresh, Detersivo Liquido Lavastoviglie, Fragranza Fresh</h3>
           <div class="price-row"><span class="now">13,29 €</span><span class="was">20,99 €</span></div>
           <p class="saved">Risparmi 8 €</p>
-          <a href="https://www.amazon.it/dp/B0H4RHYNJ5?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261109_casa_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0H4RHYNJ5?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261109_casa_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Finish Ultimate Gel, Detersivo per Lavastoviglie, 120 Lavaggi, Fresh, Detersivo Liquido Lavastoviglie, Fragranza Fresh">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="altro" data-off="49" data-price="13.96" data-ts="1794218945" data-q="alpro barista, bevanda alla mandorla, 8x1l mandorla - | naturalmente senza lattosio e 100% vegetale, ideale con il caffè per una schiuma perfetta di altro">
@@ -518,7 +519,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>ALPRO BARISTA, Bevanda alla MANDORLA, 8x1L</h3>
           <div class="price-row"><span class="now">13,96 €</span><span class="was">27,12 €</span></div>
           <p class="saved">Risparmi 13 €</p>
-          <a href="https://www.amazon.it/dp/B092QPRLDY?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261109_food_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B092QPRLDY?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261109_food_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: ALPRO BARISTA, Bevanda alla MANDORLA, 8x1L">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="casa" data-off="54" data-price="15.99" data-ts="1794217937" data-q="lenor ammorbidente lavatrice concentrato 216 lavaggi (27x8), ametista rosa e note di muschio muschio, freschezza che dura 3 volte più a lungo con tecnologia olii profumati liquido casa &amp; cucina">
@@ -528,7 +529,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Lenor Ammorbidente Lavatrice Concentrato 216 Lavaggi (27x8), Ametista Rosa E Note Di Muschio</h3>
           <div class="price-row"><span class="now">15,99 €</span><span class="was">34,99 €</span></div>
           <p class="saved">Risparmi 19 €</p>
-          <a href="https://www.amazon.it/dp/B0FGJ28RD1?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261109_casa_fam" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0FGJ28RD1?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261109_casa_fam" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Lenor Ammorbidente Lavatrice Concentrato 216 Lavaggi (27x8), Ametista Rosa E Note Di Muschio">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="altro" data-off="41" data-price="41.50" data-ts="1794209182" data-q="lego one piece tonytony chopper 75643, giochi per bambini da 9 anni, action figure giocattolo collezione 75643 | collezione, accessori come rumble ball, idea regalo, 577 pezzi set di costruzioni altro">
@@ -538,7 +539,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>LEGO ONE PIECE TonyTony Chopper 75643, Giochi per bambini da 9 anni, action figure giocattolo da collezione</h3>
           <div class="price-row"><span class="now">41,50 €</span><span class="was">69,99 €</span></div>
           <p class="saved">Risparmi 28 €</p>
-          <a href="https://www.amazon.it/dp/B0GGSR7NW9?tag=nomadcrazydea-21&amp;linkCode=osi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261109_giochi_legacy" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0GGSR7NW9?tag=nomadcrazydea-21&amp;linkCode=osi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261109_giochi_legacy" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: LEGO ONE PIECE TonyTony Chopper 75643, Giochi per bambini da 9 anni, action figure giocattolo da collezione">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="tech" data-off="39" data-price="132.97" data-ts="1794158577" data-q="ghd original, piastra professionale in ceramica, 24 mm, tutti i capelli, cavo di 2.7 m, styling quotidiano per capelli | lamelle con rivestimento glossy un finish luminoso, lo piastre tech">
@@ -548,7 +549,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>ghd Original, Piastra Professionale in Ceramica, 24 mm, tutti i capelli, Cavo di 2.7 m, Styling Quotidiano</h3>
           <div class="price-row"><span class="now">132,97 €</span><span class="was">219,00 €</span></div>
           <p class="saved">Risparmi 86 €</p>
-          <a href="https://www.amazon.it/dp/B0CCYPKJHL?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261108_tech_fam" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0CCYPKJHL?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261108_tech_fam" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: ghd Original, Piastra Professionale in Ceramica, 24 mm, tutti i capelli, Cavo di 2.7 m, Styling Quotidiano">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="beauty" data-off="46" data-price="299.99" data-ts="1794156100" data-q="braun silk·expert pro 5 epilatore luce pulsata, 2 testine, pl5152 bronzo, epilazione laser peli donna a casa bronzo | casa, riduzione permanente dei peli, con custodia e rasoio gillette venus epilatori pulsata beauty">
@@ -558,7 +559,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Braun Silk·Expert Pro 5 Epilatore Luce Pulsata, 2 Testine, PL5152 Bronzo, Epilazione Laser Peli Donna a Casa</h3>
           <div class="price-row"><span class="now">299,99 €</span><span class="was">559,99 €</span></div>
           <p class="saved">Risparmi 260 €</p>
-          <a href="https://www.amazon.it/dp/B0CW9YPRSH?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_B_20261108_bellezza_salute_fam" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0CW9YPRSH?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_B_20261108_bellezza_salute_fam" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Braun Silk·Expert Pro 5 Epilatore Luce Pulsata, 2 Testine, PL5152 Bronzo, Epilazione Laser Peli Donna a Casa">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="tech" data-off="33" data-price="199.99" data-ts="1794154085" data-q="bissell proheat revolution pulitore verticale 18582, tre modalità di pulizia, per moquette e tappezzeria, cavo 18582 | con cavo, moquette, scale, tappezzeria aspirapolvere tech">
@@ -568,7 +569,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>BISSELL ProHeat Revolution Pulitore Verticale 18582, Tre modalità di pulizia, pulitore per moquette e tappezzeria, cavo</h3>
           <div class="price-row"><span class="now">199,99 €</span><span class="was">299,99 €</span></div>
           <p class="saved">Risparmi 100 €</p>
-          <a href="https://www.amazon.it/dp/B0DSLQV39Z?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261108_tech_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0DSLQV39Z?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261108_tech_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: BISSELL ProHeat Revolution Pulitore Verticale 18582, Tre modalità di pulizia, pulitore per moquette e tappezzeria, cavo">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="beauty" data-off="33" data-price="134.99" data-ts="1794152512" data-q="philips s7000, regolabarba, custodia da viaggio s7000 - rasoio elettrico wet &amp; dry in blu ghiaccio con 1 rifinitore a scomparsa, viaggio, quick clean pod e supporto di ricarica (modello s7882/54) rasoi elettrici testine rotanti beauty">
@@ -578,7 +579,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Philips S7000, regolabarba, custodia da viaggio</h3>
           <div class="price-row"><span class="now">134,99 €</span><span class="was">199,99 €</span></div>
           <p class="saved">Risparmi 65 €</p>
-          <a href="https://www.amazon.it/dp/B0CFY6YN98?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_B_20261108_bellezza_salute_fam" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0CFY6YN98?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_B_20261108_bellezza_salute_fam" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Philips S7000, regolabarba, custodia da viaggio">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="casa" data-off="34" data-price="59.00" data-ts="1794150482" data-q="nescafé dolce gusto neo caffè, macchina de&#x27;longhi, grigio ghiaccio de&#x27;longhi | per caffè utilizzabile esclusivamente con capsule compostabili neo, macchine da tazza singola casa &amp; cucina">
@@ -588,7 +589,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>NESCAFÉ DOLCE GUSTO NEO Caffè, Macchina caffè, De&#x27;Longhi, Grigio ghiaccio</h3>
           <div class="price-row"><span class="now">59,00 €</span><span class="was">89,00 €</span></div>
           <p class="saved">Risparmi 30 €</p>
-          <a href="https://www.amazon.it/dp/B0H2FM91V7?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261108_cucina_casa_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0H2FM91V7?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261108_cucina_casa_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: NESCAFÉ DOLCE GUSTO NEO Caffè, Macchina caffè, De&#x27;Longhi, Grigio ghiaccio">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="casa" data-off="28" data-price="429.00" data-ts="1794145505" data-q="moulinex companion, 14 funzioni e modalità manuale, capacità 3l, colore grigio, hf8401f1 robot da cucina multifunzione per 10 persone, grandi casa &amp;">
@@ -598,7 +599,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Moulinex Companion, 14 Funzioni e Modalità Manuale, Capacità 3L, Colore Grigio, HF8401F1</h3>
           <div class="price-row"><span class="now">429,00 €</span><span class="was">599,99 €</span></div>
           <p class="saved">Risparmi 171 €</p>
-          <a href="https://www.amazon.it/dp/B0DZN8MRXY?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_B_20261108_cucina_casa_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0DZN8MRXY?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_B_20261108_cucina_casa_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Moulinex Companion, 14 Funzioni e Modalità Manuale, Capacità 3L, Colore Grigio, HF8401F1">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="tech" data-off="36" data-price="63.99" data-ts="1794138260" data-q="logitech mx verticale mouse wireless ergonomico, multi-dispositivo, bluetooth/2.4ghz unifying, ottico 4k dpi, 4 pulsanti ergonomico | pulsanti, ricarica rapida, pc/mac/ipados - grigio top brands tech computer accessories">
@@ -608,7 +609,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Logitech MX Verticale Mouse Wireless Ergonomico, Multi-Dispositivo, Bluetooth/2.4GHz Unifying, Ottico 4K DPI, 4 Pulsanti</h3>
           <div class="price-row"><span class="now">63,99 €</span><span class="was">99,99 €</span></div>
           <p class="saved">Risparmi 36 €</p>
-          <a href="https://www.amazon.it/dp/B07FNHV4MW?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261108_tech_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B07FNHV4MW?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261108_tech_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Logitech MX Verticale Mouse Wireless Ergonomico, Multi-Dispositivo, Bluetooth/2.4GHz Unifying, Ottico 4K DPI, 4 Pulsanti">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="moda" data-off="56" data-price="35.04" data-ts="1794136358" data-q="adidas donna ultrarun 5 running shoes, core black/cloud white/core black, 40 2/3 eu scarpe da corsa su strada moda">
@@ -618,7 +619,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>adidas Donna Ultrarun 5 Running Shoes, Core Black/Cloud White/Core Black, 40 2/3 EU</h3>
           <div class="price-row"><span class="now">35,04 €</span><span class="was">80,00 €</span></div>
           <p class="saved">Risparmi 45 €</p>
-          <a href="https://www.amazon.it/dp/B0CKS2GQCF?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261108_moda_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0CKS2GQCF?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261108_moda_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: adidas Donna Ultrarun 5 Running Shoes, Core Black/Cloud White/Core Black, 40 2/3 EU">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="casa" data-off="33" data-price="299.90" data-ts="1794132176" data-q="candy prowash 500 lavatrice carica dall’alto 7 kg 1200 rpm classe a slim 40,5 cm wifi app hon motore inverter ai weight sense 17 programmi rapidi axlxp 86x40,5x60 tca274tm5-s lavatrici casa &amp; cucina">
@@ -628,7 +629,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Candy ProWash 500 Lavatrice Carica dall’Alto 7 Kg 1200 RPM Classe</h3>
           <div class="price-row"><span class="now">299,90 €</span><span class="was">449,00 €</span></div>
           <p class="saved">Risparmi 149 €</p>
-          <a href="https://www.amazon.it/dp/B0G1TKHFWZ?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261108_cucina_casa_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0G1TKHFWZ?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_C_20261108_cucina_casa_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Candy ProWash 500 Lavatrice Carica dall’Alto 7 Kg 1200 RPM Classe">Vedi su Amazon</a>
         </div>
       </article>
       <article class="deal" data-cat="gaming" data-off="35" data-price="39.01" data-ts="1794131006" data-q="electronic arts battlefield 6 standard edition xbox series x, videogiochi, italiano x | videogiochi giochi, console e accessori per one gaming">
@@ -638,7 +639,7 @@ footer{background:var(--petrol-deep); color:#FFF9ED; padding:40px 0 20px}
           <h3>Electronic Arts Battlefield 6 Standard Edition XBOX Series X, Videogiochi, Italiano</h3>
           <div class="price-row"><span class="now">39,01 €</span><span class="was">59,99 €</span></div>
           <p class="saved">Risparmi 21 €</p>
-          <a href="https://www.amazon.it/dp/B0FJY1CCQW?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261108_giochi_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm">Vedi su Amazon</a>
+          <a href="https://www.amazon.it/dp/B0FJY1CCQW?tag=nomadcrazydea-21&amp;linkCode=ogi&amp;th=1&amp;psc=1&amp;ascsubtag=hook_A_20261108_giochi_nd" target="_blank" rel="sponsored nofollow noopener" class="btn-sm" aria-label="Vedi su Amazon: Electronic Arts Battlefield 6 Standard Edition XBOX Series X, Videogiochi, Italiano">Vedi su Amazon</a>
         </div>
       </article>
       </div>
